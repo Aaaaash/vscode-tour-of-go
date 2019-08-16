@@ -1,4 +1,4 @@
-# vscode-tour-of-go README
+# vscode-tour-of-go
 
 [![Build Status](https://travis-ci.org/Aaaaash/vscode-tour-of-go.svg?branch=master)](https://travis-ci.org/Aaaaash/vscode-tour-of-go)
 
