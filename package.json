@@ -1,7 +1,7 @@
 {
 	"name": "vscode-tour-of-go",
 	"displayName": "VS Code Tour of Go",
-	"description": "Welcome to a tour of the Go programming language.",
+	"description": "A tour of the Go programming language via VS Code.",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.37.0"
@@ -9,8 +9,19 @@
 	"categories": [
 		"Other"
 	],
+	"author": {
+        "name": "Aaaaash",
+        "email": "binshao54@gmail.com"
+	},
+	"publisher": "aaaaash",
+	"bugs": {
+        "url": "https://github.com/Aaaaash/vscode-tour-of-go/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Aaaaash/vscode-tour-of-go.git"
+    },
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
 	],
 	"main": "./out/extension.js",
 	"contributes": {

@@ -1,0 +1,18 @@
+
+language: node_js
+sudo: true
+
+os:
+  - linux
+
+node_js:
+  - "10.15.0"
+
+
+install:
+  - yarn install
+  - npm install vsce -g
+
+script:
+  - yarn run compile
+  - vsce package
