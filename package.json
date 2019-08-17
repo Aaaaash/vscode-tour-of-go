@@ -10,16 +10,16 @@
 		"Other"
 	],
 	"author": {
-        "name": "Aaaaash",
-        "email": "binshao54@gmail.com"
+		"name": "Aaaaash",
+		"email": "binshao54@gmail.com"
 	},
 	"publisher": "aaaaash",
 	"bugs": {
-        "url": "https://github.com/Aaaaash/vscode-tour-of-go/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Aaaaash/vscode-tour-of-go.git"
+		"url": "https://github.com/Aaaaash/vscode-tour-of-go/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Aaaaash/vscode-tour-of-go.git"
 	},
 	"activationEvents": [
 		"onCommand:tourOfGo-launch"
@@ -35,16 +35,20 @@
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
+		"compile": "webpack --mode production --config webpack.config.js",
+		"watch": "webpack --mode development --watch --info-verbosity verbose --config webpack.config.js",
 		"postinstall": "node ./node_modules/vscode/bin/install && cd webview && yarn install",
 		"test": "yarn run compile && node ./node_modules/vscode/bin/test"
 	},
 	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^10.12.21",
+		"copy-webpack-plugin": "^5.0.4",
+		"ts-loader": "^6.0.4",
+		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
 		"vscode": "^1.1.28",
-		"tslint": "^5.12.1",
-		"@types/node": "^10.12.21",
-		"@types/mocha": "^2.2.42"
+		"webpack": "^4.39.2",
+		"webpack-cli": "^3.3.6"
 	}
 }
