@@ -34,7 +34,7 @@
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "yarn run compile",
+		"vscode:prepublish": "yarn run compile && cd webview && yarn build",
 		"compile": "webpack --mode production --config webpack.config.js",
 		"watch": "webpack --mode development --watch --info-verbosity verbose --config webpack.config.js",
 		"postinstall": "node ./node_modules/vscode/bin/install && cd webview && yarn install",
