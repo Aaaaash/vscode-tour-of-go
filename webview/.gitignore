@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+/webviewDist
 
 # misc
 .DS_Store
