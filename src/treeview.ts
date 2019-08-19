@@ -65,15 +65,24 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
         this._onDidChangeTreeData.fire();
     }
 
-    public getTreeItem(args: any): vscode.TreeItem {
+    public getTreeItem(element: any): vscode.TreeItem {
+        return element;
+    }
+
+    private getTourOfGoLearnSteps() {
+        return [];
+    }
+
+    public getChildren() {
+        output.appendLine('Get children.');
         if (!this.initialized) {
-            return { label: '请先创建 Tour of Go 工作区' };
+            return [{ label: '请先创建 Tour of Go 工作区' }];
         }
 
         if (this.isTourWorkspace) {
-            return { label: 'Hello World' };
+            return this.getTourOfGoLearnSteps();
         } else {
-            return {
+            return [{
                 label: '打开 Tour of Go 工作区',
                 command: {
                     title: 'Open',
@@ -81,17 +90,13 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
                     tooltip: '打开 Tour of Go 工作区',
                     arguments: [this.projectRoot],
                 },
-            };
-        }
-    }
-
-    public getChildren(...args: any[]) {
-        output.appendLine('Get children.');
-        if (this.initialized && this.isTourWorkspace) {
-            output.appendLine(this.projectRoot!);
-            return [{
-                label: 'children',
             }];
         }
+    }
+}
+
+class ClassItem extends vscode.TreeItem {
+    constructor(label: string, collapsibleState?: vscode.TreeItemCollapsibleState) {
+        super(label, collapsibleState);
     }
 }

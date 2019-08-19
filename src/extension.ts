@@ -22,13 +22,9 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.registerTreeDataProvider(extensionIdentifier, tourOfGoTreeView)
 	);
 
-	context.subscriptions.push(
-		createWorksapceCommand(context, tourOfGoTreeView)
-	);
+	context.subscriptions.push(createWorksapceCommand(context, tourOfGoTreeView));
 
-	context.subscriptions.push(
-		openWorkspaceCommand(context)
-	);
+	context.subscriptions.push(openWorkspaceCommand(context));
 }
 
 export function deactivate() {}
