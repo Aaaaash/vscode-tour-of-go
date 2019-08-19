@@ -24,7 +24,7 @@
 	"activationEvents": [
 		"onView:tour-of-go"
 	],
-	"main": "./out/extension.js",	
+	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
@@ -77,5 +77,10 @@
 		"vscode": "^1.1.28",
 		"webpack": "^4.39.2",
 		"webpack-cli": "^3.3.6"
+	},
+	"dependencies": {
+		"@types/fs-extra": "^8.0.0",
+		"dugite-extra": "^0.1.11",
+		"fs-extra": "^8.1.0"
 	}
 }

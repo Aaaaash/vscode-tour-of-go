@@ -1,42 +1,29 @@
 import * as vscode from 'vscode';
 
-import { ToufOfGoTreeView } from './treeview';
+import { TourOfGoTreeView } from './treeview';
 import { output } from './utils/output';
-import { identifier, defaultStorage, StorageType } from './common';
+import { extensionIdentifier, defaultStorage, StorageType } from './common';
+import { createWorksapceCommand } from './commands';
 
 export function activate(context: vscode.ExtensionContext) {
-	context.globalState.update(identifier, JSON.stringify(defaultStorage));
-	let storage: string | StorageType | undefined = context.globalState.get(identifier);
+	context.globalState.update(extensionIdentifier, JSON.stringify(defaultStorage));
+	let storage: string | StorageType | undefined = context.globalState.get(extensionIdentifier);
 	if (!storage) {
-		context.globalState.update(identifier, defaultStorage);
+		context.globalState.update(extensionIdentifier, JSON.stringify(defaultStorage));
 		storage = defaultStorage;
 	} else {
 		storage = JSON.parse(storage as string);
 	}
 
 	output.appendLine('Extension activated.');
-	const tourOfGoTreeView = new ToufOfGoTreeView(storage as StorageType);
+	const tourOfGoTreeView = new TourOfGoTreeView(storage as StorageType);
 
 	context.subscriptions.push(
-		vscode.window.registerTreeDataProvider(identifier, tourOfGoTreeView)
+		vscode.window.registerTreeDataProvider(extensionIdentifier, tourOfGoTreeView)
 	);
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand('create-tour-of-go-workspace', (...args: any[]) => {
-			vscode.window.showInformationMessage("Creating...");
-			vscode.window.showOpenDialog({
-				canSelectFiles: false,
-				canSelectFolders: true,
-				canSelectMany: false,
-			})
-				.then((value) => {
-					if (value) {
-						output.appendLine(`Selecetd project path: ${value.toString()}`);
-					} else {
-						output.appendLine('Cancel.');
-					}
-				});
-		})
+		createWorksapceCommand(context, tourOfGoTreeView)
 	);
 }
 
