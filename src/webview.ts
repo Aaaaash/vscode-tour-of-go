@@ -41,7 +41,7 @@ function getWebviewContent(extensionPath: string): string {
 
         <title>invoked</title>
     </head>
-    <body>
+    <body style="padding: 0px;margin:0px;">
         <div id="root"></div>
 
         <script src="${runtimeJsUri}"></script>
@@ -62,4 +62,5 @@ export function openTourOfGoWebview(context: vscode.ExtensionContext): void {
     );
 
     panel.webview.html = getWebviewContent(context.extensionPath);
+    panel.iconPath = vscode.Uri.file(path.join(context.extensionPath, 'assets', 'tour-of-go.png'));
 }
