@@ -24,8 +24,15 @@
 	"activationEvents": [
 		"onView:tour-of-go"
 	],
-	"main": "./out/extension.js",
+	"main": "./out/extension.js",	
 	"contributes": {
+		"commands": [
+			{
+				"command": "create-tour-of-go-workspace",
+				"title": "创建 Tour of Go 工作区",
+				"icon": "assets/add.svg"
+			}
+		],
 		"viewsContainers": {
 			"activitybar": [
 				{
@@ -40,6 +47,15 @@
 				{
 					"id": "tour-of-go",
 					"name": "Dashboard"
+				}
+			]
+		},
+		"menus": {
+			"view/title": [
+				{
+					"command": "create-tour-of-go-workspace",
+					"when": "view == tour-of-go",
+					"group": "navigation"
 				}
 			]
 		}

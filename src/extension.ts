@@ -20,6 +20,24 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.window.registerTreeDataProvider(identifier, tourOfGoTreeView)
 	);
+
+	context.subscriptions.push(
+		vscode.commands.registerCommand('create-tour-of-go-workspace', (...args: any[]) => {
+			vscode.window.showInformationMessage("Creating...");
+			vscode.window.showOpenDialog({
+				canSelectFiles: false,
+				canSelectFolders: true,
+				canSelectMany: false,
+			})
+				.then((value) => {
+					if (value) {
+						output.appendLine(`Selecetd project path: ${value.toString()}`);
+					} else {
+						output.appendLine('Cancel.');
+					}
+				});
+		})
+	);
 }
 
 export function deactivate() {}

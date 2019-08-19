@@ -18,16 +18,17 @@ export class ToufOfGoTreeView implements vscode.TreeDataProvider<any> {
         this.initialized = initialized;
     }
 
-    public getTreeItem() {
+    public getTreeItem(args: any) {
         return {
-            label: '创建 Tour of Go 工作空间',
+            label: '请先创建 Tour of Go 工作区',
         } as vscode.TreeItem;
     }
 
     public getChildren() {
         if (!this.initialized) {
             return [{
-                label: '创建 Tour of Go 工作空间',
+                label: '请先创建 Tour of Go 工作区',
+                description: '点击 ➕ 创建 Tour of Go 工作区开始 Go 语言之旅'
             }];
         }
     }
