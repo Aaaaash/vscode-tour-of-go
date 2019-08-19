@@ -3,6 +3,7 @@ import { clone } from 'dugite-extra';
 
 import { output } from './utils/output';
 import { StorageType, tourRepository, openWorkspaceCommandIdentifier } from './common';
+import { openTourOfGoWebview } from './webview';
 
 export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
     private _onDidChangeTreeData: vscode.EventEmitter<any | undefined> = new vscode.EventEmitter<any | undefined>();
@@ -16,7 +17,7 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
 
     private isTourWorkspace: boolean = false;
 
-    constructor(storage: StorageType) {
+    constructor(storage: StorageType, context: vscode.ExtensionContext) {
         output.appendLine(`Initialize treeview. init data: ${JSON.stringify(storage)}`);
         const { projectRoot, currentStep, initialized } = storage;
         this.projectRoot = projectRoot,
@@ -27,6 +28,7 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
             const workspace = vscode.workspace.workspaceFolders.find((folder) => folder.uri.fsPath === this.projectRoot);
             if (workspace) {
                 this.isTourWorkspace = true;
+                openTourOfGoWebview(context);
                 this.refresh();
             }
         }

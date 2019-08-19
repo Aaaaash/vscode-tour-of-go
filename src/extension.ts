@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
 		storage = JSON.parse(storage as string);
 	}
 
-	const tourOfGoTreeView = new TourOfGoTreeView(storage as StorageType);
+	const tourOfGoTreeView = new TourOfGoTreeView(storage as StorageType, context);
 	context.subscriptions.push(
 		vscode.window.registerTreeDataProvider(extensionIdentifier, tourOfGoTreeView)
 	);

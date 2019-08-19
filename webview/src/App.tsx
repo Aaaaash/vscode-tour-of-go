@@ -5,20 +5,13 @@ import './App.css';
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>A Tour of Go</h1>
+      <p>Hello, 世界</p>
+      <p>Welcome to a tour of the Go programming language.</p>
+      <p>The tour is divided into a list of modules that you can access by clicking on A Tour of Go  on the top left of the page.</p>
+      <p>You can also view the table of contents at any time by clicking on the menu on the top right of the page.</p>
+      <p>Throughout the tour you will find a series of slides and exercises for you to complete.</p>
+      <p>You can navigate through them using</p>
     </div>
   );
 }

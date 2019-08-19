@@ -61,11 +61,12 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "yarn run compile && cd webview && yarn build",
+		"vscode:prepublish": "yarn run compile && yarn build:webview",
 		"compile": "webpack --mode production --config webpack.config.js",
 		"watch": "webpack --mode development --watch --info-verbosity verbose --config webpack.config.js",
 		"postinstall": "node ./node_modules/vscode/bin/install && cd webview && yarn install",
-		"test": "yarn run compile && node ./node_modules/vscode/bin/test"
+		"test": "yarn run compile && node ./node_modules/vscode/bin/test",
+		"build:webview": "cd webview && yarn build"
 	},
 	"devDependencies": {
 		"@types/mocha": "^2.2.42",
