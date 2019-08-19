@@ -37,6 +37,7 @@ export function createWorksapceCommand(context: vscode.ExtensionContext, treevie
 
 export function openWorkspaceCommand(context: vscode.ExtensionContext) {
     return vscode.commands.registerCommand(openWorkspaceCommandIdentifier, (...args) => {
-        vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.parse(args[0]), true);
+		const openInNewWindow = vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0;
+        vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.parse(args[0]), openInNewWindow);
     });
 }
