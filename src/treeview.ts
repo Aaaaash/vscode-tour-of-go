@@ -2,8 +2,7 @@ import * as vscode from 'vscode';
 import { clone } from 'dugite-extra';
 
 import { output } from './utils/output';
-import { StorageType, tourRepository } from './common';
-import { resolve } from 'dns';
+import { StorageType, tourRepository, openWorkspaceCommandIdentifier } from './common';
 
 export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
     private _onDidChangeTreeData: vscode.EventEmitter<any | undefined> = new vscode.EventEmitter<any | undefined>();
@@ -15,17 +14,26 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
 
     private initialized: boolean = false;
 
+    private isTourWorkspace: boolean = false;
+
     constructor(storage: StorageType) {
         output.appendLine(`Initialize treeview. init data: ${JSON.stringify(storage)}`);
         const { projectRoot, currentStep, initialized } = storage;
         this.projectRoot = projectRoot,
         this.currentStep = currentStep;
         this.initialized = initialized;
+
+        if (projectRoot && vscode.workspace.workspaceFolders) {
+            const workspace = vscode.workspace.workspaceFolders.find((folder) => folder.uri.fsPath === this.projectRoot);
+            if (workspace) {
+                this.isTourWorkspace = true;
+                this.refresh();
+            }
+        }
     }
 
     public async updateProjectRoot(projectRoot: string): Promise<void> {
         this.projectRoot = projectRoot;
-
         this.initialize();
     }
 
@@ -45,6 +53,8 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
                     output.appendLine('Clone done.');
                     this.initialized = true;
                     this.refresh();
+                    output.appendLine(this.projectRoot!);
+                    vscode.commands.executeCommand('vscode.openfolder', vscode.Uri.file(this.projectRoot!));
                     resolve();
                 });
             });
@@ -55,18 +65,32 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
         this._onDidChangeTreeData.fire();
     }
 
-    public getTreeItem(args: any) {
-        return {
-            label: '请先创建 Tour of Go 工作区',
-        } as vscode.TreeItem;
+    public getTreeItem(args: any): vscode.TreeItem {
+        if (!this.initialized) {
+            return { label: '请先创建 Tour of Go 工作区' };
+        }
+
+        if (this.isTourWorkspace) {
+            return { label: 'Hello World' };
+        } else {
+            return {
+                label: '打开 Tour of Go 工作区',
+                command: {
+                    title: 'Open',
+                    command: openWorkspaceCommandIdentifier,
+                    tooltip: '打开 Tour of Go 工作区',
+                    arguments: [this.projectRoot],
+                },
+            };
+        }
     }
 
-    public getChildren() {
+    public getChildren(...args: any[]) {
         output.appendLine('Get children.');
-        if (!this.initialized) {
+        if (this.initialized && this.isTourWorkspace) {
+            output.appendLine(this.projectRoot!);
             return [{
-                label: '请先创建 Tour of Go 工作区',
-                description: '点击 ➕ 创建 Tour of Go 工作区开始 Go 语言之旅'
+                label: 'children',
             }];
         }
     }
