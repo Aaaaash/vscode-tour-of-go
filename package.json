@@ -22,16 +22,27 @@
 		"url": "https://github.com/Aaaaash/vscode-tour-of-go.git"
 	},
 	"activationEvents": [
-		"onCommand:tourOfGo-launch"
+		"onView:tour-of-go"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "tourOfGo-launch",
-				"title": "Launch Tour of Go"
-			}
-		]
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "tour-of-go",
+					"title": "Tour of go",
+					"icon": "assets/tour-of-go.png"
+				}
+			]
+		},
+		"views": {
+			"tour-of-go": [
+				{
+					"id": "tour-of-go",
+					"name": "Dashboard"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile && cd webview && yarn build",
