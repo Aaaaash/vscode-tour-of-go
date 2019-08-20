@@ -11,6 +11,8 @@
   padding: 0px 5%;
   text-align: left;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .header h1 {
@@ -21,6 +23,11 @@
   line-height: 48px;
   height: 48px;
   font-weight: 400;
+}
+
+.header img {
+  height: 50%;
+  margin-right: 20px;
 }
 
 .main {

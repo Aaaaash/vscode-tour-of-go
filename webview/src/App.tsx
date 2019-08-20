@@ -16,6 +16,7 @@ const App: React.FC = () => {
     <BrowserRouter>
       <div className="App">
         <div className="header">
+          <img src="go.png" alt=""/>
           <h1 onClick={() => history.push('/')}>A Tour of Go.</h1>
         </div>
         <div className="main">
