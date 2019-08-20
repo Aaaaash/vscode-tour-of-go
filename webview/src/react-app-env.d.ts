@@ -63,12 +63,6 @@ declare module '*.module.sass' {
   export default classes;
 }
 
-interface VscodeAPI {
-  postMessage: (message: any) => ReturnType<typeof window.postMessage>;
-  setState: (newState: any) => any;
-  getState: () => any;
-}
-
 interface Window {
   acquireVsCodeApi: () => VscodeAPI;
 }
