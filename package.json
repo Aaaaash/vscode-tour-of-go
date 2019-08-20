@@ -31,6 +31,16 @@
 				"command": "create-tour-of-go-workspace",
 				"title": "创建 Tour of Go 工作区",
 				"icon": "assets/add.svg"
+			},
+			{
+				"command": "open-tour-of-go-workspace",
+				"title": "打开 Tour of Go 工作区",
+				"icon": "assets/add.svg"
+			},
+			{
+				"command": "open-welcome",
+				"title": "打开 Tour of Go Welcome",
+				"icon": "assets/add.svg"
 			}
 		],
 		"viewsContainers": {

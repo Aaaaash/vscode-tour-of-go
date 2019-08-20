@@ -3,6 +3,7 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Route, Router } from 'react-router';
 
 import Footer from './Footer';
+import { vscode } from '../api';
 
 const welcomeHistoryStack = [
     '/welcome',
@@ -12,27 +13,30 @@ const welcomeHistoryStack = [
     '/welcome/congratulations',
 ];
 
-const Welcome = () => (
-    <>
-    <h2>Hello, 世界</h2>
-        <p>Welcome to a tour of the <Link href="https://golang.org/" target="_blank">Go programming language</Link>.</p>
-        <p>The tour is divided into a list of modules that you can access by clicking on <Link href="javascript:highlight(&quot;.logo&quot;)" target="_self">A Tour of Go</Link> on the top left of the page.</p>
-        <p>You can also view the table of contents at any time by clicking on the <Link href="javascript:highlightAndClick(&quot;.nav&quot;)" target="_self">menu</Link> on the top right of the page.</p>
-        <p>Throughout the tour you will find a series of slides and exercises for you to complete.</p>
-        <p>You can navigate through them using</p>
-        <ul>
-            <li><Link href="javascript:highlight(&quot;.prev-page&quot;)" target="_self">"Previous"</Link> or <code>PageUp</code> to go to the previous page,</li>
-        </ul>
-        <ul>
-            <li><Link href="javascript:highlight(&quot;.next-page&quot;)" target="_self">"Next"</Link> or <code>PageDown</code> to go to the next page.</li>
-        </ul>
-        <p>The tour is interactive. Click the <Link href="javascript:highlightAndClick(&quot;#run&quot;)" target="_self">Run</Link> button now (or press <code>Shift</code> + <code>Enter</code>) to compile and run the program on a remote server. The result is displayed below the code.</p>
-        <p>These example programs demonstrate different aspects of Go. The programs in the tour are meant to be starting points for your own experimentation.</p>
-        <p>Edit the program and run it again.</p>
-        <p>When you click on <Link href="javascript:highlightAndClick(&quot;#format&quot;)" target="_self">Format</Link>(shortcut: <code>Ctrl</code> + <code>Enter</code>), the text in the editor is formatted using the <Link href="https://golang.org/cmd/gofmt/" target="_blank">gofmt</Link> tool. You can switch syntax highlighting on and off by clicking on the <Link href="javascript:highlightAndClick(&quot;.syntax-checkbox&quot;)" target="_self">syntax</Link> button.</p>
-        <p>When you're ready to move on, click the <Link href="javascript:highlightAndClick(&quot;.next-page&quot;)" target="_self">right arrow</Link> below or type the <code>PageDown</code> key.</p>
-    </>
-);
+const Welcome = () => {
+    vscode.postMessage(JSON.stringify({ event: 'OPEN_EDITOR', filePath: 'welcome/hello.go' }));
+    return (
+        <>
+            <h2>Hello, 世界</h2>
+            <p>Welcome to a tour of the <Link href="https://golang.org/" target="_blank">Go programming language</Link>.</p>
+            <p>The tour is divided into a list of modules that you can access by clicking on <Link href="javascript:highlight(&quot;.logo&quot;)" target="_self">A Tour of Go</Link> on the top left of the page.</p>
+            <p>You can also view the table of contents at any time by clicking on the <Link href="javascript:highlightAndClick(&quot;.nav&quot;)" target="_self">menu</Link> on the top right of the page.</p>
+            <p>Throughout the tour you will find a series of slides and exercises for you to complete.</p>
+            <p>You can navigate through them using</p>
+            <ul>
+                <li><Link href="javascript:highlight(&quot;.prev-page&quot;)" target="_self">"Previous"</Link> or <code>PageUp</code> to go to the previous page,</li>
+            </ul>
+            <ul>
+                <li><Link href="javascript:highlight(&quot;.next-page&quot;)" target="_self">"Next"</Link> or <code>PageDown</code> to go to the next page.</li>
+            </ul>
+            <p>The tour is interactive. Click the <Link href="javascript:highlightAndClick(&quot;#run&quot;)" target="_self">Run</Link> button now (or press <code>Shift</code> + <code>Enter</code>) to compile and run the program on a remote server. The result is displayed below the code.</p>
+            <p>These example programs demonstrate different aspects of Go. The programs in the tour are meant to be starting points for your own experimentation.</p>
+            <p>Edit the program and run it again.</p>
+            <p>When you click on <Link href="javascript:highlightAndClick(&quot;#format&quot;)" target="_self">Format</Link>(shortcut: <code>Ctrl</code> + <code>Enter</code>), the text in the editor is formatted using the <Link href="https://golang.org/cmd/gofmt/" target="_blank">gofmt</Link> tool. You can switch syntax highlighting on and off by clicking on the <Link href="javascript:highlightAndClick(&quot;.syntax-checkbox&quot;)" target="_self">syntax</Link> button.</p>
+            <p>When you're ready to move on, click the <Link href="javascript:highlightAndClick(&quot;.next-page&quot;)" target="_self">right arrow</Link> below or type the <code>PageDown</code> key.</p>
+        </>
+    );
+};
 
 const GoLocal = () => (
     <>
@@ -75,22 +79,25 @@ const GoOffline = () => (
     </>
 );
 
-const GoPlayground = () => (
-    <>
-        <h2>The Go Playground</h2>
-        <p>This tour is built atop the <Link href="https://play.golang.org/" target="_blank">Go Playground</Link>, a web service that runs on <Link href="https://golang.org/" target="_blank">golang.org</Link>'s servers.</p>
-        <p>The service receives a Go program, compiles, links, and runs the program inside a sandbox, then returns the output.</p>
-        <p>There are limitations to the programs that can be run in the playground:</p>
-        <ul>
-            <li>In the playground the time begins at 2009-11-10 23:00:00 UTC (determining the significance of this date is an exercise for the reader). This makes it easier to cache programs by giving them deterministic output.</li>
-        </ul>
-        <ul>
-            <li>There are also limits on execution time and on CPU and memory usage, and the program cannot access external network hosts.</li>
-        </ul>
-        <p>The playground uses the latest stable release of Go.</p>
-        <p>Read "<Link href="https://blog.golang.org/playground" target="_blank">Inside the Go Playground</Link>" to learn more.</p>
-    </>
-);
+const GoPlayground = () => {
+    vscode.postMessage(JSON.stringify({ event: 'OPEN_EDITOR', filePath: 'welcome/sandbox.go' }));
+    return (
+        <>
+            <h2>The Go Playground</h2>
+            <p>This tour is built atop the <Link href="https://play.golang.org/" target="_blank">Go Playground</Link>, a web service that runs on <Link href="https://golang.org/" target="_blank">golang.org</Link>'s servers.</p>
+            <p>The service receives a Go program, compiles, links, and runs the program inside a sandbox, then returns the output.</p>
+            <p>There are limitations to the programs that can be run in the playground:</p>
+            <ul>
+                <li>In the playground the time begins at 2009-11-10 23:00:00 UTC (determining the significance of this date is an exercise for the reader). This makes it easier to cache programs by giving them deterministic output.</li>
+            </ul>
+            <ul>
+                <li>There are also limits on execution time and on CPU and memory usage, and the program cannot access external network hosts.</li>
+            </ul>
+            <p>The playground uses the latest stable release of Go.</p>
+            <p>Read "<Link href="https://blog.golang.org/playground" target="_blank">Inside the Go Playground</Link>" to learn more.</p>
+        </>
+    );
+}
 
 const Congratulations = () => (
     <>

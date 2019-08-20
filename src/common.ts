@@ -2,6 +2,7 @@ export const extensionIdentifier = 'tour-of-go';
 
 export const createWorksapceCommandIdentifier = 'create-tour-of-go-workspace';
 export const openWorkspaceCommandIdentifier = 'open-tour-of-go-workspace';
+export const openWelcomeCommandIdentifier = 'open-welcome';
 
 export const tourRepository = 'git@github.com:golang/tour.git';
 

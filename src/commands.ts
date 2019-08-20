@@ -3,7 +3,8 @@ import * as fse from 'fs-extra';
 
 import { output } from './utils/output';
 import { TourOfGoTreeView } from './treeview';
-import { extensionIdentifier, defaultStorage, createWorksapceCommandIdentifier, openWorkspaceCommandIdentifier } from './common';
+import { extensionIdentifier, defaultStorage, createWorksapceCommandIdentifier, openWorkspaceCommandIdentifier, openWelcomeCommandIdentifier } from './common';
+import { webviewManager } from './webview';
 
 export function createWorksapceCommand(context: vscode.ExtensionContext, treeview: TourOfGoTreeView) {
 	return vscode.commands.registerCommand(createWorksapceCommandIdentifier, (...args: any[]) => {
@@ -39,5 +40,11 @@ export function openWorkspaceCommand(context: vscode.ExtensionContext) {
     return vscode.commands.registerCommand(openWorkspaceCommandIdentifier, (...args) => {
 		const openInNewWindow = vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0;
         vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.parse(args[0]), openInNewWindow);
+    });
+}
+
+export function openWelcomeCommand(context: vscode.ExtensionContext) {
+    return vscode.commands.registerCommand(openWelcomeCommandIdentifier, () => {
+        webviewManager.createOrShow(context);
     });
 }

@@ -1,6 +1,8 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 
+import { output } from './utils/output';
+
 function getWebviewContent(extensionPath: string): string {
     const handlePathOnDiskWith = (uri: string): vscode.Uri => {
         return vscode.Uri.file(path.join(extensionPath, 'webviewDist', uri)).with({
@@ -49,16 +51,80 @@ function getWebviewContent(extensionPath: string): string {
     </html>`;
 }
 
-export function openTourOfGoWebview(context: vscode.ExtensionContext): void {
-    const panel = vscode.window.createWebviewPanel(
-        'tour-of-go',
-        'Welcome - A Tour of Go',
-        vscode.ViewColumn.Active,
-        {
-            enableScripts: true,
-        }
-    );
+class Connection {
+    private previousUri: vscode.Uri | undefined;
 
-    panel.webview.html = getWebviewContent(context.extensionPath);
-    panel.iconPath = vscode.Uri.file(path.join(context.extensionPath, 'assets', 'tour-of-go.png'));
+    constructor(private webview: vscode.Webview) {
+        this.webview.onDidReceiveMessage((message) => {
+            try {
+                const eventData = JSON.parse(message);
+                switch (eventData.event) {
+                    case 'OPEN_EDITOR':
+                        output.appendLine(`[Event] - OPEN_EDITOR ${eventData.filePath}`);
+                        if (vscode.window.activeTextEditor) {
+                            vscode.window.activeTextEditor.hide();
+                        }
+                        vscode.commands.executeCommand(
+                            'vscode.open',
+                            vscode.Uri.file(path.join(vscode.workspace.workspaceFolders![0].uri.fsPath, 'content', eventData.filePath)), vscode.ViewColumn.Two
+                        );
+                        break;
+                    default:
+                        break;
+                }
+            } catch (err) {
+                output.appendLine(`[Error] - ${err.message}`);
+                vscode.window.showErrorMessage('Can not execute command.');
+            }
+        });
+    }
+
+    public dispose(): void {
+        //
+    }
 }
+
+class WebviewManager {
+    
+    private currentPanel: vscode.WebviewPanel | undefined;
+
+    private _disposables: vscode.Disposable[] = [];
+
+    private connection: Connection | undefined;
+
+    constructor() {
+    }
+
+    public createOrShow(context: vscode.ExtensionContext) {
+        const column = vscode.window.activeTextEditor
+			? vscode.window.activeTextEditor.viewColumn
+			: undefined;
+        if (this.currentPanel) {
+            this.currentPanel.reveal(column);
+            return;
+        }
+
+        const panel = vscode.window.createWebviewPanel(
+            'tour-of-go',
+            'Welcome - A Tour of Go',
+            vscode.ViewColumn.Active,
+            {
+                enableScripts: true,
+            }
+        );
+
+        panel.webview.html = getWebviewContent(context.extensionPath);
+        panel.iconPath = vscode.Uri.file(path.join(context.extensionPath, 'assets', 'tour-of-go.png'));
+
+        this.currentPanel = panel;
+
+        this.currentPanel.onDidDispose(() => {
+            this.currentPanel = undefined;
+            this.connection!.dispose();
+        });
+
+        this.connection = new Connection(this.currentPanel.webview);
+    }
+}
+
+export const webviewManager = new WebviewManager();
