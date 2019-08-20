@@ -19,12 +19,28 @@
   display: block;
   line-height: 48px;
   height: 48px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .main {
   padding-top: 24px;
   padding: 0px 25%;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.main h1 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.main h2 {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.main .message-bar {
+  margin-bottom: 12px;
 }
 
 .footer {
