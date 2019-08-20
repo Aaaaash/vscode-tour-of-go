@@ -62,3 +62,13 @@ declare module '*.module.sass' {
   const classes: { readonly [key: string]: string };
   export default classes;
 }
+
+interface VscodeAPI {
+  postMessage: (message: any) => ReturnType<typeof window.postMessage>;
+  setState: (newState: any) => any;
+  getState: () => any;
+}
+
+interface Window {
+  acquireVsCodeApi: () => VscodeAPI;
+}

@@ -1,7 +1,13 @@
-interface VscodeAPI {
-    postMessage: (message: any) => void;
+if(!window.acquireVsCodeApi) {
+    window.acquireVsCodeApi = () => {
+        return {
+            postMessage: (message: any) => {
+                window.postMessage(message, '*')
+            },
+            setState: (newState: any) => newState,
+            getState: () => {},
+        }
+    }
 }
 
-declare var acquireVsCodeApi: () => VscodeAPI;
-
-export const vscode = acquireVsCodeApi();
+export const vscode = window.acquireVsCodeApi();
