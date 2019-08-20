@@ -81,8 +81,11 @@
 	},
 	"dependencies": {
 		"@types/fs-extra": "^8.0.0",
+		"@types/react-router": "^5.0.3",
+		"@types/react-router-dom": "^4.3.4",
 		"dugite-extra": "^0.1.11",
 		"fs-extra": "^8.1.0",
-		"node-ssh": "^6.0.0"
+		"node-ssh": "^6.0.0",
+		"react-router-dom": "^5.0.1"
 	}
 }
