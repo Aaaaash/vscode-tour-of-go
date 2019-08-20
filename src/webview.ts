@@ -38,12 +38,10 @@ function getWebviewContent(extensionPath: string): string {
         scheme: 'vscode-resource'
     })}/">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <title>invoked</title>
     </head>
     <body style="padding: 0px;margin:0px;">
         <div id="root"></div>
-
         <script src="${runtimeJsUri}"></script>
         ${chunkScripts.map((item) => `<script src="${item}"></script>`)}
         <script src="${mainJsUri}"></script>
@@ -55,7 +53,7 @@ export function openTourOfGoWebview(context: vscode.ExtensionContext): void {
     const panel = vscode.window.createWebviewPanel(
         'tour-of-go',
         'Welcome - A Tour of Go',
-        vscode.ViewColumn.Two,
+        vscode.ViewColumn.Active,
         {
             enableScripts: true,
         }

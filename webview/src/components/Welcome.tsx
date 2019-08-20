@@ -1,6 +1,16 @@
 import * as React from 'react';
 import { Link } from 'office-ui-fabric-react/lib/Link';
-import { Switch, Route } from 'react-router';
+import { Route, Router } from 'react-router';
+
+import Footer from './Footer';
+
+const welcomeHistoryStack = [
+    '/welcome',
+    '/welcome/golocal',
+    '/welcome/gooffline',
+    '/welcome/goplayground',
+    '/welcome/congratulations',
+];
 
 const Welcome = () => (
     <>
@@ -53,11 +63,57 @@ const GoLocal = () => (
     </>
 );
 
-export default () => (
+const GoOffline = () => (
     <>
-        <Switch>
+        <h2>Go offline</h2>
+        <p>This tour is also available as a stand-alone program that you can use without access to the internet.</p>
+        <p>The stand-alone tour is faster, as it builds and runs the code samples on your own machine.</p>
+        <p>To run the tour locally install and run the tour binary:</p>
+        <pre>go get golang.org/x/tour tour</pre>
+        <p>The tour program will open a web browser displaying  your local version of the tour.</p>
+        <p>Or, of course, you can continue to take the tour through this web site.</p>
+    </>
+);
+
+const GoPlayground = () => (
+    <>
+        <h2>The Go Playground</h2>
+        <p>This tour is built atop the <Link href="https://play.golang.org/" target="_blank">Go Playground</Link>, a web service that runs on <Link href="https://golang.org/" target="_blank">golang.org</Link>'s servers.</p>
+        <p>The service receives a Go program, compiles, links, and runs the program inside a sandbox, then returns the output.</p>
+        <p>There are limitations to the programs that can be run in the playground:</p>
+        <ul>
+            <li>In the playground the time begins at 2009-11-10 23:00:00 UTC (determining the significance of this date is an exercise for the reader). This makes it easier to cache programs by giving them deterministic output.</li>
+        </ul>
+        <ul>
+            <li>There are also limits on execution time and on CPU and memory usage, and the program cannot access external network hosts.</li>
+        </ul>
+        <p>The playground uses the latest stable release of Go.</p>
+        <p>Read "<Link href="https://blog.golang.org/playground" target="_blank">Inside the Go Playground</Link>" to learn more.</p>
+    </>
+);
+
+const Congratulations = () => (
+    <>
+        <h2>Congratulations</h2>
+        <p>You've finished the first module of the tour!</p>
+        <p>Now click on <Link href="javascript:highlightAndClick(&quot;.logo&quot;)" target="_self">A Tour of Go</Link> to find out what else you can learn about Go, or go directly to the <Link href="javascript:click('.next-page')" target="_self">next lesson</Link>.</p>
+    </>
+);
+
+export default (props: any) => (
+    <>
+        <Router history={props.history}>
             <Route exact path='/welcome' component={Welcome} />
-            <Route path='/welcome/2' component={GoLocal} />
-        </Switch>
+            <Route path='/welcome/golocal' component={GoLocal} />
+            <Route path='/welcome/gooffline' component={GoOffline} />
+            <Route path='/welcome/goplayground' component={GoPlayground} />
+            <Route path='/welcome/congratulations' component={Congratulations} />
+        </Router>
+        <Footer
+            history={props.history}
+            stack={welcomeHistoryStack}
+            next="/basic"
+            prev="/"
+        />
     </>
 );
