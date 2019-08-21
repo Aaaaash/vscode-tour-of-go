@@ -4,6 +4,7 @@ import { Route, Router } from 'react-router';
 
 import Footer from './Footer';
 import { vscode } from '../api';
+import { Events } from '../common/event';
 
 const welcomeHistoryStack = [
     '/welcome',
@@ -14,7 +15,7 @@ const welcomeHistoryStack = [
 ];
 
 const Welcome = () => {
-    vscode.postMessage(JSON.stringify({ event: 'OPEN_EDITOR', filePath: 'welcome/hello.go' }));
+    vscode.postMessage(JSON.stringify({ event: Events.openEditor, filePath: 'welcome/hello.go' }));
     return (
         <>
             <h2>Hello, 世界</h2>
@@ -80,7 +81,7 @@ const GoOffline = () => (
 );
 
 const GoPlayground = () => {
-    vscode.postMessage(JSON.stringify({ event: 'OPEN_EDITOR', filePath: 'welcome/sandbox.go' }));
+    vscode.postMessage(JSON.stringify({ event: Events.openEditor, filePath: 'welcome/sandbox.go' }));
     return (
         <>
             <h2>The Go Playground</h2>

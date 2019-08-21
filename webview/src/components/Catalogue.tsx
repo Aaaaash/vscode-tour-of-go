@@ -25,7 +25,7 @@ export default (props: any) => (
             <p>Learn how to control the flow of your code with conditionals, loops, switches and defers.</p>
         </MessageBar>
         <MessageBar className="message-bar" messageBarType={MessageBarType.info}>
-            <Link href="/motetypes" text="More types: structs, slices, and maps." history={props.history} />
+            <Link href="/moretypes" text="More types: structs, slices, and maps." history={props.history} />
             <p>Learn how to define types based on existing ones: this lesson covers structs, arrays, slices, and maps.</p>
         </MessageBar>
         <h2>Methods and interfaces</h2>
