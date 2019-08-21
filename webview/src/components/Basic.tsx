@@ -4,6 +4,7 @@ import { Route, Router } from 'react-router';
 
 import Footer from './Footer';
 import { vscode } from '../api';
+import { Events } from '../common/event';
 
 const basicHistoryStack = [
     '/basic',
@@ -14,7 +15,7 @@ const basicHistoryStack = [
 ];
 
 const Basic = () => {
-    vscode.postMessage(JSON.stringify({ event: 'OPEN_EDITOR', filePath: 'basics/packages.go' }));
+    vscode.postMessage(JSON.stringify({ event: Events.openEditor, filePath: 'basics/packages.go' }));
     return (
         <>
             <h2>Packages</h2>
@@ -29,7 +30,7 @@ const Basic = () => {
 }
 
 const Imports = () => {
-    vscode.postMessage(JSON.stringify({ event: 'OPEN_EDITOR', filePath: 'basics/imports.go' }));
+    vscode.postMessage(JSON.stringify({ event: Events.openEditor, filePath: 'basics/imports.go' }));
     return (
         <>
             <h2>Imports</h2>
@@ -49,7 +50,7 @@ const Imports = () => {
 }
 
 const ExportedNames = () => {
-    vscode.postMessage(JSON.stringify({ event: 'OPEN_EDITOR', filePath: 'basics/exported-names.go' }));
+    vscode.postMessage(JSON.stringify({ event: Events.openEditor, filePath: 'basics/exported-names.go' }));
     return(
         <>
             <h2>Exported names</h2>
@@ -76,7 +77,7 @@ const ExportedNames = () => {
 }
 
 const Functions = () => {
-    vscode.postMessage(JSON.stringify({ event: 'OPEN_EDITOR', filePath: 'basics/functions.go' }));
+    vscode.postMessage(JSON.stringify({ event: Events.openEditor, filePath: 'basics/functions.go' }));
     return (
         <>
             <h2>Functions</h2>
@@ -97,7 +98,7 @@ const Functions = () => {
 }
 
 const FunctionsContinued = () => {
-    vscode.postMessage(JSON.stringify({ event: 'OPEN_EDITOR', filePath: 'basics/functions-continued.go' }));
+    vscode.postMessage(JSON.stringify({ event: Events.openEditor, filePath: 'basics/functions-continued.go' }));
     return (
         <>
             <h2>Functions continued</h2>
@@ -117,7 +118,7 @@ const FunctionsContinued = () => {
 }
 
 const MultipleResults = () => {
-    vscode.postMessage(JSON.stringify({ event: 'OPEN_EDITOR', filePath: 'basics/multiple-results.go' }));
+    vscode.postMessage(JSON.stringify({ event: Events.openEditor, filePath: 'basics/multiple-results.go' }));
     return (
         <>
         <h2>Multiple results</h2>
@@ -132,7 +133,7 @@ const MultipleResults = () => {
 }
 
 const NamedReturnValues = () => {
-    vscode.postMessage(JSON.stringify({ event: 'OPEN_EDITOR', filePath: 'basics/named-results.go' }));
+    vscode.postMessage(JSON.stringify({ event: Events.openEditor, filePath: 'basics/named-results.go' }));
     return (
         <>
             <h2>Named return values</h2>
