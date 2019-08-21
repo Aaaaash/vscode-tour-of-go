@@ -34,17 +34,11 @@ const Imports = () => {
     return (
         <>
             <h2>Imports</h2>
-            <p>
-                This code groups the imports into a parenthesized, "factored" import statement.
-            </p>
-            <p>
-                You can also write multiple import statements, like:
-            </p>
+            <p>This code groups the imports into a parenthesized, "factored" import statement.</p>
+            <p>You can also write multiple import statements, like:</p>
             <pre>import "fmt"
             import "math"</pre>
-            <p>
-                But it is good style to use the factored import statement.
-            </p>
+            <p>But it is good style to use the factored import statement.</p>
         </>
     );
 }
@@ -54,24 +48,13 @@ const ExportedNames = () => {
     return(
         <>
             <h2>Exported names</h2>
-            <p>
-                In Go, a name is exported if it begins with a capital letter.
+            <p>In Go, a name is exported if it begins with a capital letter.
                 For example, <code>Pizza</code> is an exported name, as is <code>Pi</code>, which is exported from
-                the <code>math</code> package.
-            </p>
-            <p>
-                <code>pizza</code> and <code>pi</code> do not start with a capital letter, so they are not exported.
-            </p>
-            <p>
-                When importing a package, you can refer only to its exported names.
-                Any "unexported" names are not accessible from outside the package.
-            </p>
-            <p>
-                Run the code. Notice the error message.
-            </p>
-            <p>
-                To fix the error, rename <code>math.pi</code> to <code>math.Pi</code> and try it again.
-            </p>
+                the <code>math</code> package.</p>
+            <p><code>pizza</code> and <code>pi</code> do not start with a capital letter, so they are not exported.</p>
+            <p>When importing a package, you can refer only to its exported names. Any "unexported" names are not accessible from outside the package.</p>
+            <p>Run the code. Notice the error message.</p>
+            <p>To fix the error, rename <code>math.pi</code> to <code>math.Pi</code> and try it again.</p>
         </>
     );
 }
@@ -81,18 +64,10 @@ const Functions = () => {
     return (
         <>
             <h2>Functions</h2>
-            <p>
-                A function can take zero or more arguments.
-            </p>
-            <p>
-                In this example, <code>add</code> takes two parameters of type <code>int</code>.
-            </p>
-            <p>
-                Notice that the type comes <i>after</i> the variable name.
-            </p>
-            <p>
-                (For more about why types look the way they do, see the <a href="https://blog.golang.org/gos-declaration-syntax" target="_blank">article on Go's declaration syntax</a>.)
-            </p>
+            <p>A function can take zero or more arguments.</p>
+            <p>In this example, <code>add</code> takes two parameters of type <code>int</code>.</p>
+            <p>Notice that the type comes <i>after</i> the variable name.</p>
+            <p>(For more about why types look the way they do, see the <a href="https://blog.golang.org/gos-declaration-syntax" target="_blank">article on Go's declaration syntax</a>.)</p>
         </>
     );
 }
@@ -102,16 +77,10 @@ const FunctionsContinued = () => {
     return (
         <>
             <h2>Functions continued</h2>
-            <p>
-                When two or more consecutive named function parameters share a type, you can omit the type from all but the last.
-            </p>
-            <p>
-                In this example, we shortened
-            </p>
+            <p>When two or more consecutive named function parameters share a type, you can omit the type from all but the last.</p>
+            <p>In this example, we shortened</p>
             <pre>x int, y int</pre>
-            <p>
-                to
-            </p>
+            <p>to</p>
             <pre>x, y int</pre>
         </>
     );
@@ -121,13 +90,9 @@ const MultipleResults = () => {
     vscode.postMessage(JSON.stringify({ event: Events.openEditor, filePath: 'basics/multiple-results.go' }));
     return (
         <>
-        <h2>Multiple results</h2>
-        <p>
-            A function can return any number of results.
-        </p>
-        <p>
-            The <code>swap</code> function returns two strings.
-        </p>
+            <h2>Multiple results</h2>
+            <p>A function can return any number of results.</p>
+            <p>The <code>swap</code> function returns two strings.</p>
         </>
     );
 }
@@ -137,18 +102,10 @@ const NamedReturnValues = () => {
     return (
         <>
             <h2>Named return values</h2>
-            <p>
-                Go's return values may be named. If so, they are treated as variables defined at the top of the function.
-            </p>
-            <p>
-                These names should be used to document the meaning of the return values.
-            </p>
-            <p>
-                A <code>return</code> statement without arguments returns the named return values. This is known as a "naked" return.
-            </p>
-            <p>
-                Naked return statements should be used only in short functions, as with the example shown here. They can harm readability in longer functions.
-            </p>
+            <p>Go's return values may be named. If so, they are treated as variables defined at the top of the function.</p>
+            <p>These names should be used to document the meaning of the return values.</p>
+            <p>A <code>return</code> statement without arguments returns the named return values. This is known as a "naked" return.</p>
+            <p>Naked return statements should be used only in short functions, as with the example shown here. They can harm readability in longer functions.</p>
         </>
     );
 }
