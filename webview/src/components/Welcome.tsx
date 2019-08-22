@@ -33,7 +33,7 @@ const Welcome = () => {
             <p>The tour is interactive. Click the <Link target="self">Run</Link> button now (or press <code>Shift</code> + <code>Enter</code>) to compile and run the program on a remote server. The result is displayed below the code.</p>
             <p>These example programs demonstrate different aspects of Go. The programs in the tour are meant to be starting points for your own experimentation.</p>
             <p>Edit the program and run it again.</p>
-            <p>When you click on <Link target="self">Format</Link>(shortcut: <code>Ctrl</code> + <code>Enter</code>), the text in the editor is formatted using the <Link href="https://golang.org/cmd/gofmt/" target="blank">gofmt</Link> tool. You can switch syntax highlighting on and off by clicking on the <Link href="javascript:highlightAndClick(&quot;.syntax-checkbox&quot;)" target="self">syntax</Link> button.</p>
+            <p>When you click on <Link target="self">Format</Link>(shortcut: <code>Ctrl</code> + <code>Enter</code>), the text in the editor is formatted using the <Link href="https://golang.org/cmd/gofmt/" target="blank">gofmt</Link> tool. You can switch syntax highlighting on and off by clicking on the <Link target="self">syntax</Link> button.</p>
             <p>When you're ready to move on, click the <Link target="self">right arrow</Link> below or type the <code>PageDown</code> key.</p>
         </>
     );
@@ -104,7 +104,7 @@ const Congratulations = () => (
     <>
         <h2>Congratulations</h2>
         <p>You've finished the first module of the tour!</p>
-        <p>Now click on <Link target="self">A Tour of Go</Link> to find out what else you can learn about Go, or go directly to the <Link href="javascript:click('.next-page')" target="self">next lesson</Link>.</p>
+        <p>Now click on <Link target="self">A Tour of Go</Link> to find out what else you can learn about Go, or go directly to the <Link target="self">next lesson</Link>.</p>
     </>
 );
 
