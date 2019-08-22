@@ -67,7 +67,7 @@ const Functions = () => {
             <p>A function can take zero or more arguments.</p>
             <p>In this example, <code>add</code> takes two parameters of type <code>int</code>.</p>
             <p>Notice that the type comes <i>after</i> the variable name.</p>
-            <p>(For more about why types look the way they do, see the <a href="https://blog.golang.org/gos-declaration-syntax" target="_blank">article on Go's declaration syntax</a>.)</p>
+            <p>(For more about why types look the way they do, see the <a href="https://blog.golang.org/gos-declaration-syntax" target="blank">article on Go's declaration syntax</a>.)</p>
         </>
     );
 }
