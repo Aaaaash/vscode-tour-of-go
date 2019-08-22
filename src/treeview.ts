@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { clone } from 'dugite-extra';
 
 import { output } from './utils/output';
-import { StorageType, tourRepository, openWorkspaceCommandIdentifier } from './common';
+import { StorageType, tourRepository, openWorkspaceCommandIdentifier, TreeviewTypes } from './common';
 import { webviewManager } from './webview';
 
 export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
@@ -20,7 +20,7 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
     constructor(storage: StorageType, context: vscode.ExtensionContext) {
         output.appendLine(`Initialize treeview. init data: ${JSON.stringify(storage)}`);
         const { projectRoot, currentStep, initialized } = storage;
-        this.projectRoot = projectRoot,
+        this.projectRoot = projectRoot;
         this.currentStep = currentStep;
         this.initialized = initialized;
 
@@ -51,14 +51,14 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
                     output.appendLine(`${process.value.toString()} ${process.title} ${process.description}`);
                     progressInstance.report({ message: `${process.description}` });
                 })
-                .then(() => {
-                    output.appendLine('Clone done.');
-                    this.initialized = true;
-                    this.refresh();
-                    output.appendLine(this.projectRoot!);
-                    vscode.commands.executeCommand('vscode.openfolder', vscode.Uri.file(this.projectRoot!));
-                    resolve();
-                });
+                    .then(() => {
+                        output.appendLine('Clone done.');
+                        this.initialized = true;
+                        this.refresh();
+                        output.appendLine(this.projectRoot!);
+                        vscode.commands.executeCommand('vscode.openfolder', vscode.Uri.file(this.projectRoot!));
+                        resolve();
+                    });
             });
         });
     }
@@ -72,33 +72,54 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
     }
 
     private getTourOfGoLearnSteps() {
-        return [];
+        return TreeviewTypes.map((step) => {
+            return new ClassItem(step.title, vscode.TreeItemCollapsibleState.Collapsed, step.children);
+        });
     }
 
-    public getChildren() {
+    public getChildren(element: any) {
         output.appendLine('Get children.');
-        if (!this.initialized) {
-            return [{ label: '请先创建 Tour of Go 工作区' }];
-        }
+        if (!element) {
+            if (!this.initialized) {
+                return [{ label: '请先创建 Tour of Go 工作区' }];
+            }
 
-        if (this.isTourWorkspace) {
-            return this.getTourOfGoLearnSteps();
-        } else {
-            return [{
-                label: '打开 Tour of Go 工作区',
-                command: {
-                    title: 'Open',
-                    command: openWorkspaceCommandIdentifier,
-                    tooltip: '打开 Tour of Go 工作区',
-                    arguments: [this.projectRoot],
-                },
-            }];
+            if (this.isTourWorkspace) {
+                return this.getTourOfGoLearnSteps();
+            } else {
+                return [{
+                    label: '打开 Tour of Go 工作区',
+                    command: {
+                        title: 'Open',
+                        command: openWorkspaceCommandIdentifier,
+                        tooltip: '打开 Tour of Go 工作区',
+                        arguments: [this.projectRoot],
+                    },
+                }];
+            }
         }
+        return element.getChildren();
     }
 }
 
 class ClassItem extends vscode.TreeItem {
-    constructor(label: string, collapsibleState?: vscode.TreeItemCollapsibleState) {
+    constructor(
+        label: string,
+        collapsibleState?: vscode.TreeItemCollapsibleState,
+        private children?: any[],
+    ) {
         super(label, collapsibleState);
+    }
+
+    public getChildren() {
+        if (this.children) {
+            return this.children.map((step) => {
+                return new ClassItem(
+                    step.title,
+                    step.children ? vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None,
+                    step.children
+                );
+            });
+        }
     }
 }
