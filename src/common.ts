@@ -103,7 +103,7 @@ export const TreeviewTypes = [
                     },
                     {
                         title: 'Type interface',
-                        filePath: 'basic/type-interface.go',
+                        filePath: 'basic/type-inference.go',
                     },
                     {
                         title: 'Constants',

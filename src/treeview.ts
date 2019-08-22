@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { clone } from 'dugite-extra';
+import * as path from 'path';
 
 import { output } from './utils/output';
 import { StorageType, tourRepository, openWorkspaceCommandIdentifier, TreeviewTypes } from './common';
@@ -107,8 +108,20 @@ class ClassItem extends vscode.TreeItem {
         label: string,
         collapsibleState?: vscode.TreeItemCollapsibleState,
         private children?: any[],
+        private filePath?: string,
     ) {
         super(label, collapsibleState);
+        this.command = !this.filePath ? undefined : {
+            title: 'Open File',
+            command: 'vscode.open',
+            tooltip: 'Open File',
+            arguments: [
+                vscode.Uri.file(
+                    path.join(vscode.workspace.workspaceFolders![0].uri.fsPath, 'content', this.filePath)
+                ),
+                vscode.ViewColumn.Two
+            ]
+        }
     }
 
     public getChildren() {
@@ -117,7 +130,8 @@ class ClassItem extends vscode.TreeItem {
                 return new ClassItem(
                     step.title,
                     step.children ? vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None,
-                    step.children
+                    step.children,
+                    step.filePath,
                 );
             });
         }
