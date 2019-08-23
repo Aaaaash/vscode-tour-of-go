@@ -57,7 +57,7 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
                         this.initialized = true;
                         this.refresh();
                         output.appendLine(this.projectRoot!);
-                        vscode.commands.executeCommand('vscode.openfolder', vscode.Uri.file(this.projectRoot!));
+                        vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.file(this.projectRoot!));
                         resolve();
                     });
             });
