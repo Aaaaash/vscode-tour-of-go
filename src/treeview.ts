@@ -1,9 +1,8 @@
 import * as vscode from 'vscode';
-import { clone } from 'dugite-extra';
 import * as path from 'path';
 
 import { output } from './utils/output';
-import { StorageType, tourRepository, openWorkspaceCommandIdentifier, TreeviewTypes } from './common';
+import { StorageType, tourRepository, openWorkspaceCommandIdentifier, TreeviewTypes, initWorksapceCommandIdentifier, createWorksapceCommandIdentifier } from './common';
 import { webviewManager } from './webview';
 
 export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
@@ -37,31 +36,13 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
 
     public async updateProjectRoot(projectRoot: string): Promise<void> {
         this.projectRoot = projectRoot;
-        this.initialize();
+        this.initialize(projectRoot);
     }
 
-    public initialize(): void {
-        process.env['USE_LOCAL_GIT'] = 'true';
-        vscode.window.withProgress({
-            title: '正在初始化工作区',
-            location: vscode.ProgressLocation.Notification,
-            cancellable: true,
-        }, (progressInstance) => {
-            return new Promise((resolve, reject) => {
-                clone(tourRepository, this.projectRoot!, {}, {}, (process) => {
-                    output.appendLine(`${process.value.toString()} ${process.title} ${process.description}`);
-                    progressInstance.report({ message: `${process.description}` });
-                })
-                    .then(() => {
-                        output.appendLine('Clone done.');
-                        this.initialized = true;
-                        this.refresh();
-                        output.appendLine(this.projectRoot!);
-                        vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.file(this.projectRoot!));
-                        resolve();
-                    });
-            });
-        });
+    public initialize(projectRoot: string): void {
+        vscode.commands.executeCommand(initWorksapceCommandIdentifier, [projectRoot]);
+        this.initialized = true;
+        this.refresh();
     }
 
     public refresh(): void {
@@ -82,7 +63,7 @@ export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
         output.appendLine('Get children.');
         if (!element) {
             if (!this.initialized) {
-                return [{ label: '请先创建 Tour of Go 工作区' }];
+                return [{ label: '请先创建 Tour of Go 工作区', command: { command: createWorksapceCommandIdentifier, title: '请先创建 Tour of Go 工作区' } }];
             }
 
             if (this.isTourWorkspace) {

@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 import { TourOfGoTreeView } from './treeview';
 import { output } from './utils/output';
 import { extensionIdentifier, defaultStorage, StorageType } from './common';
-import { createWorksapceCommand, openWorkspaceCommand, openWelcomeCommand } from './commands';
+import { createWorksapceCommand, openWorkspaceCommand, openWelcomeCommand, initWorkspaceCommand } from './commands';
 
 export function activate(context: vscode.ExtensionContext) {
 	output.appendLine('Extension activated.');
@@ -24,9 +24,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(createWorksapceCommand(context, tourOfGoTreeView));
 
-	context.subscriptions.push(openWorkspaceCommand(context));
+	context.subscriptions.push(openWorkspaceCommand());
 
 	context.subscriptions.push(openWelcomeCommand(context));
+
+	context.subscriptions.push(initWorkspaceCommand());
 }
 
 export function deactivate() {}

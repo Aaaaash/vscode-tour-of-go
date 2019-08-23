@@ -1,6 +1,7 @@
 export const extensionIdentifier = 'tour-of-go';
 
 export const createWorksapceCommandIdentifier = 'create-tour-of-go-workspace';
+export const initWorksapceCommandIdentifier = 'init-tour-of-go-worksapce';
 export const openWorkspaceCommandIdentifier = 'open-tour-of-go-workspace';
 export const openWelcomeCommandIdentifier = 'open-welcome';
 
