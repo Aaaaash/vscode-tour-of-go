@@ -7,6 +7,8 @@ export const openWelcomeCommandIdentifier = 'open-welcome';
 
 export const tourRepository = 'git@github.com:golang/tour.git';
 
+export const openNow = '立即打开';
+
 export const defaultStorage = {
     projectRoot: undefined,
     currentStep: 0,

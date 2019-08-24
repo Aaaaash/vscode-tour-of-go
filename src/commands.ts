@@ -4,7 +4,7 @@ import { clone } from 'dugite-extra';
 
 import { output } from './utils/output';
 import { TourOfGoTreeView } from './treeview';
-import { extensionIdentifier, defaultStorage, createWorksapceCommandIdentifier, openWorkspaceCommandIdentifier, openWelcomeCommandIdentifier, initWorksapceCommandIdentifier, tourRepository } from './common';
+import { extensionIdentifier, defaultStorage, createWorksapceCommandIdentifier, openWorkspaceCommandIdentifier, openWelcomeCommandIdentifier, initWorksapceCommandIdentifier, tourRepository, openNow } from './common';
 import { webviewManager } from './webview';
 
 export function createWorksapceCommand(context: vscode.ExtensionContext, treeview: TourOfGoTreeView) {
@@ -50,10 +50,6 @@ export function openWelcomeCommand(context: vscode.ExtensionContext) {
     });
 }
 
-const openWorkspaceModalAction = {
-	title: '立即打开',
-};
-
 export function initWorkspaceCommand() {
 	return vscode.commands.registerCommand(initWorksapceCommandIdentifier, (...args: any) => {
 		const [projectRoot] = args;
@@ -70,7 +66,11 @@ export function initWorkspaceCommand() {
                 })
                     .then(() => {
                         output.appendLine('Clone done.');
-						return vscode.window.showInformationMessage('是否打开 Tour of Go 工作空间?', { modal: true }, openWorkspaceModalAction)
+						return vscode.window.showInformationMessage(
+							'是否打开 Tour of Go 工作空间?',
+							{ modal: true },
+							{ title: openNow },
+						);
 					})
 					.then((value) => {
 						if (value && value.title === '立即打开') {
