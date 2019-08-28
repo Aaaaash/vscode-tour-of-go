@@ -65,7 +65,8 @@ export function initWorkspaceCommand() {
                     progressInstance.report({ message: `${process.description}` });
                 })
                     .then(() => {
-                        output.appendLine('Clone done.');
+						output.appendLine('Clone done.');
+						resolve();
 						return vscode.window.showInformationMessage(
 							'是否打开 Tour of Go 工作空间?',
 							{ modal: true },
@@ -76,7 +77,6 @@ export function initWorkspaceCommand() {
 						if (value && value.title === '立即打开') {
 							vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.file(projectRoot));
 						}
-						resolve();
 					});
             });
         });
