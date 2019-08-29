@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 
 import { output } from './utils/output';
-import { StorageType, tourRepository, openWorkspaceCommandIdentifier, TreeviewTypes, initWorksapceCommandIdentifier, createWorksapceCommandIdentifier } from './common';
+import { StorageType, tourRepository, openWorkspaceCommandIdentifier, TreeviewTypes, initWorksapceCommandIdentifier, createWorksapceCommandIdentifier, openContentCommandIdentifier } from './common';
 import { webviewManager } from './webview';
 
 export class TourOfGoTreeView implements vscode.TreeDataProvider<any> {
@@ -94,15 +94,18 @@ class ClassItem extends vscode.TreeItem {
         super(label, collapsibleState);
         this.command = !this.filePath ? undefined : {
             title: 'Open File',
-            command: 'vscode.open',
+            command: openContentCommandIdentifier,
             tooltip: 'Open File',
             arguments: [
                 vscode.Uri.file(
                     path.join(vscode.workspace.workspaceFolders![0].uri.fsPath, 'content', this.filePath)
                 ),
-                vscode.ViewColumn.Two
+                vscode.ViewColumn.Two,
+                vscode.Uri.file(
+                    path.join(vscode.workspace.workspaceFolders![0].uri.fsPath, 'content', this.filePath)
+                ),
             ]
-        }
+        };
     }
 
     public getChildren() {

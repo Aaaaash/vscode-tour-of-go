@@ -9,7 +9,19 @@ import Basic from './components/Basic';
 
 import './App.css';
 
-const history = createHashHistory();
+const hashHistory = createHashHistory();
+
+window.addEventListener('message', (ev) => {
+  const eventData = JSON.parse(ev.data);
+  switch (eventData.event) {
+    case 'LOCATION_CHANGE':
+      console.log(eventData);
+      hashHistory.push(eventData.location);
+      break;
+    default:
+      break;
+  }
+});
 
 const App: React.FC = () => {
   return (
@@ -17,10 +29,10 @@ const App: React.FC = () => {
       <div className="App">
         <div className="header">
           <img src="go.png" alt=""/>
-          <h1 onClick={() => history.push('/')}>A Tour of Go.</h1>
+          <h1 onClick={() => hashHistory.push('/')}>A Tour of Go.</h1>
         </div>
         <div className="main">
-          <Router history={history}>
+          <Router history={hashHistory}>
             <Route path="/" exact component={Catalogue} />
             <Route path="/welcome" component={Welcome} />
             <Route path="/basic" component={Basic} />
@@ -29,6 +41,6 @@ const App: React.FC = () => {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

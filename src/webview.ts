@@ -79,6 +79,14 @@ class Connection {
         });
     }
 
+    public jumpToLocation(location: string): void {
+        output.appendLine(`Jump to ${location}`);
+        this.webview.postMessage(JSON.stringify({
+            event: 'LOCATION_CHANGE',
+            location,
+        }));
+    }
+
     public dispose(): void {
         //
     }
@@ -124,6 +132,14 @@ class WebviewManager {
         });
 
         this.connection = new Connection(this.currentPanel.webview);
+    }
+
+    public jumpToLocation(location: string) {
+        if (!this.currentPanel || !this.connection) {
+            return;
+        }
+
+        this.connection.jumpToLocation('/basic/functions');
     }
 }
 
