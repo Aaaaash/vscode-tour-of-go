@@ -31,7 +31,6 @@ export const TreeviewTypes = [
                     },
                     {
                         title: 'Go Local',
-                        
                     },
                     {
                         title: 'Go Offline',

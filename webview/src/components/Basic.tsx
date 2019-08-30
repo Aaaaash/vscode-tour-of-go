@@ -45,7 +45,7 @@ const Imports = () => {
 
 const ExportedNames = () => {
     vscode.postMessage(JSON.stringify({ event: Events.openEditor, filePath: 'basics/exported-names.go' }));
-    return(
+    return (
         <>
             <h2>Exported names</h2>
             <p>In Go, a name is exported if it begins with a capital letter.
