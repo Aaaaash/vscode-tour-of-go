@@ -17,7 +17,7 @@ export default (props: any) => (
         <p>The starting point, learn all the basics of the language.</p>
         <p>Declaring variables, calling functions, and all the things you need to know before moving to the next lessons.</p>
         <MessageBar className="message-bar" messageBarType={MessageBarType.info}>
-            <Link href="/basic" text="Packages, variables, and functions." history={props.history} />
+            <Link href="/basics" text="Packages, variables, and functions." history={props.history} />
             <p>Learn the basic components of any Go program.</p>
         </MessageBar>
         <MessageBar className="message-bar" messageBarType={MessageBarType.info}>

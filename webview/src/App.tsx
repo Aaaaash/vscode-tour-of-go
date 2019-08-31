@@ -35,7 +35,7 @@ const App: React.FC = () => {
           <Router history={hashHistory}>
             <Route path="/" exact component={Catalogue} />
             <Route path="/welcome" component={Welcome} />
-            <Route path="/basic" component={Basic} />
+            <Route path="/basics" component={Basic} />
           </Router>
         </div>
       </div>

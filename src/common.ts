@@ -28,6 +28,7 @@ export const TreeviewTypes = [
                     {
                         title: 'Hello, 世界,',
                         filePath: 'welcome/hello.go',
+                        route: '/welcome/hello',
                     },
                     {
                         title: 'Go Local',
@@ -38,6 +39,7 @@ export const TreeviewTypes = [
                     {
                         title: 'The Go Playground',
                         filePath: 'welcome/sandbox.go',
+                        route: '/welcome/sandbox',
                     },
                     {
                         title: 'Congratulations',
@@ -55,34 +57,42 @@ export const TreeviewTypes = [
                     {
                         title: 'Packages',
                         filePath: 'basics/packages.go',
+                        route: '/basics/packages',
                     },
                     {
                         title: 'Imports',
                         filePath: 'basics/imports.go',
+                        route: '/basics/imports',
                     },
                     {
                         title: 'Exported Names',
                         filePath: 'basics/exported-names.go',
+                        route: '/basics/exported-names',
                     },
                     {
                         title: 'Functions',
                         filePath: 'basics/functions.go',
+                        route: '/basics/functions',
                     },
                     {
                         title: 'Functions continued',
                         filePath: 'basics/functions-continued.go',
+                        route: '/basics/functions-continued'
                     },
                     {
                         title: 'Multiple results',
                         filePath: 'basics/multiple-results.go',
+                        route: '/basics/multiple-results'
                     },
                     {
                         title: 'Named return values',
                         filePath: 'basics/named-results.go',
+                        route: '/basics/named-results'
                     },
                     {
                         title: 'Variables',
                         filePath: 'basics/variables.go',
+                        route: '/basics/variables'
                     },
                     {
                         title: 'Variables with initializers',

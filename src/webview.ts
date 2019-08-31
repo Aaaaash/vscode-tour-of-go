@@ -139,7 +139,7 @@ class WebviewManager {
             return;
         }
 
-        this.connection.jumpToLocation('/basic/functions');
+        this.connection.jumpToLocation(location);
     }
 }
 

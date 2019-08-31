@@ -7,11 +7,11 @@ import { vscode } from '../api';
 import { Events } from '../common/event';
 
 const basicHistoryStack = [
-    '/basic',
-    '/basic/imports',
-    '/basic/exportednames',
-    '/basic/functions',
-    '/basic/functionscontinued'
+    '/basics',
+    '/basics/imports',
+    '/basics/exported-names',
+    '/basics/functions',
+    '/basics/functions-continued'
 ];
 
 const Basic = () => {
@@ -113,13 +113,13 @@ const NamedReturnValues = () => {
 export default (props: any) => (
     <>
         <Router history={props.history}>
-            <Route exact path='/basic' component={Basic} />
-            <Route path='/basic/imports' component={Imports} />
-            <Route path='/basic/exportednames' component={ExportedNames} />
-            <Route path='/basic/functions' component={Functions} />
-            <Route path='/basic/functionscontinued' component={FunctionsContinued} />
-            <Route path='/basic/multipleresults' component={MultipleResults} />
-            <Route path='/basic/namedreturnvalues' component={NamedReturnValues} />
+            <Route exact path='/basics' component={Basic} />
+            <Route path='/basics/imports' component={Imports} />
+            <Route path='/basics/exported-names' component={ExportedNames} />
+            <Route path='/basics/functions' component={Functions} />
+            <Route path='/basics/functions-continued' component={FunctionsContinued} />
+            <Route path='/basics/multiple-results' component={MultipleResults} />
+            <Route path='/basics/named-results' component={NamedReturnValues} />
         </Router>
         <Footer
             history={props.history}

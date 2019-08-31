@@ -120,7 +120,7 @@ export default (props: any) => (
         <Footer
             history={props.history}
             stack={welcomeHistoryStack}
-            next="/basic"
+            next="/basics"
             prev="/"
         />
     </>

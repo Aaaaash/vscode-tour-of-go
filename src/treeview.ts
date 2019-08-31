@@ -90,6 +90,7 @@ class ClassItem extends vscode.TreeItem {
         collapsibleState?: vscode.TreeItemCollapsibleState,
         private children?: any[],
         private filePath?: string,
+        private route?: string,
     ) {
         super(label, collapsibleState);
         this.command = !this.filePath ? undefined : {
@@ -101,9 +102,7 @@ class ClassItem extends vscode.TreeItem {
                     path.join(vscode.workspace.workspaceFolders![0].uri.fsPath, 'content', this.filePath)
                 ),
                 vscode.ViewColumn.Two,
-                vscode.Uri.file(
-                    path.join(vscode.workspace.workspaceFolders![0].uri.fsPath, 'content', this.filePath)
-                ),
+                this.route,
             ]
         };
     }
@@ -116,6 +115,7 @@ class ClassItem extends vscode.TreeItem {
                     step.children ? vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None,
                     step.children,
                     step.filePath,
+                    step.route,
                 );
             });
         }
