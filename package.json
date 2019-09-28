@@ -96,6 +96,7 @@
 		"dugite-extra": "^0.1.11",
 		"fs-extra": "^8.1.0",
 		"node-ssh": "^6.0.0",
-		"react-router-dom": "^5.0.1"
+		"react-router-dom": "^5.0.1",
+		"tree-sitter-go": "^0.15.0"
 	}
 }

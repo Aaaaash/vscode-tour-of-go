@@ -1,6 +1,9 @@
 import * as vscode from 'vscode';
 import * as fse from 'fs-extra';
+import * as fs from 'fs';
 import { clone } from 'dugite-extra';
+import * as path from 'path';
+import { parser } from 'tree-sitter-go';
 
 import { output } from './utils/output';
 import { TourOfGoTreeView } from './treeview';
@@ -99,5 +102,14 @@ export function openContentCommand() {
 		vscode.commands.executeCommand('vscode.open', uri, column);
 		output.appendLine(`Jump to ${filePath}`);
 		webviewManager.jumpToLocation(filePath);
+
+		const folder = vscode.workspace.workspaceFolders![0];
+		output.appendLine(folder.uri.path);
+		output.appendLine(path.join(folder.uri.path, 'content', `${filePath}.go`));
+		const content = fs.readFileSync(path.join(folder.uri.path, 'content', `${filePath}.go`)).toString();
+		const tree = parser(content);
+		console.log(tree);
+		output.appendLine(tree);
+		// output.appendLine(content);
 	});
 }

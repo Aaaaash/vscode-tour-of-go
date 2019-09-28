@@ -2326,7 +2326,7 @@ ms@^2.1.1:
   resolved "https://registry.npm.taobao.org/ms/download/ms-2.1.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fms%2Fdownload%2Fms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=
 
-nan@^2.12.1:
+nan@^2.10.0, nan@^2.12.1:
   version "2.14.0"
   resolved "https://registry.npm.taobao.org/nan/download/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   integrity sha1-eBj3IgJ7JFmobwKV1DTR/CM2xSw=
@@ -3535,6 +3535,13 @@ tough-cookie@~2.4.3:
   dependencies:
     psl "^1.1.24"
     punycode "^1.4.1"
+
+tree-sitter-go@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.npm.taobao.org/tree-sitter-go/download/tree-sitter-go-0.15.0.tgz#d10b122c6ad58638b42b608b9d2d22899f8fe904"
+  integrity sha1-0QsSLGrVhji0K2CLnS0iiZ+P6QQ=
+  dependencies:
+    nan "^2.10.0"
 
 ts-loader@^6.0.4:
   version "6.0.4"
